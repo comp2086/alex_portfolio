@@ -7,8 +7,18 @@ a {
   color: #00B7FF;
 }
 
-/* Common container styles */
+/* Common containers */
 
 .container {
     text-align: center;
+}
+
+/* Navigation */
+.navigation {
+    margin-bottom: 10px;
+}
+
+/* Border for debugging CSS */
+.border_red {
+    border: 2px solid red
 }
