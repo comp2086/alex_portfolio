@@ -1,26 +1,32 @@
+/*
+File name: index.js
+Author: Alex Andriishyn
+Website: http://alexandriishyn.azurewebsites.net/
+File description: routes file
+*/
 var express = require('express');
 var router = express.Router();
 
-/* home page. */
+/* Home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Portfolio' });
 });
 
-/* about page */
+/* About page */
 router.get('/about', function(req, res, next) {
     res.render('about', { title: 'About me' });
 });
 
-/* projects page */
+/* Projects page */
 router.get('/projects', function(req, res, next) {
     res.render('projects', { title: 'Projects' });
 });
 
-/* services page */
+/* Services page */
 router.get('/services', function(req, res, next) {
     res.render('services', { title: 'Services' });
 });
 
-/* contact me page */
+/* Contact me page */
 
 module.exports = router;
