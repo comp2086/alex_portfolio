@@ -15,5 +15,17 @@
     "morgan": "~1.6.1",
     "nodemon": "^1.7.1",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp2086/alex_portfolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/comp2086/alex_portfolio/issues"
+  },
+  "homepage": "https://github.com/comp2086/alex_portfolio#readme",
+  "description": ""
 }
