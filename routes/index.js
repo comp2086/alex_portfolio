@@ -28,6 +28,16 @@ router.get('/services', function(req, res, next) {
 });
 
 /* Contact me page */
+router.get('/contactme', function(req, res, next) {
+    res.render('contactme', { title: 'Contact me' });
+});
 
-
+router.post('/contactme', function(req, res) {
+    var name = req.body.name;
+    var email = req.body.email;
+    var message = req.body.message;
+    
+    // Send email
+    
+});
 module.exports = router;
