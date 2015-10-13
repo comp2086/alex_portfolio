@@ -41,7 +41,8 @@ router.get('/services', function(req, res, next) {
 
 // Contact me page
 router.get('/contactme', function(req, res, next) {
-    res.render('contactme', { title: 'Contact me' });
+    res.render('contactme', { title: 'Contact me',
+                              emailSent: ''});
 });
 
 router.post('/contactme', function(req, res) {
@@ -52,18 +53,17 @@ router.post('/contactme', function(req, res) {
     // Send email
     transport.sendMail({
         from: email,
-        to: "alex.andriishyn@icloud.com",
-        subject: "Portfolio message from " + name + ", " + email,
+        to: 'alex.andriishyn@icloud.com',
+        subject: 'Portfolio message from ' + name + ', ' + email,
         text: message
-        }, function (err, res) {
+        }, function (err, resp) {
             if(err) {
                 console.log(err);
             }
             else {
-                   // document.getElementById("emailSent").innerHTML = "Your message has been sent";
-                }
+                res.render('contactme', { title: 'Contact me', emailSent: 'Your message has been sent'});
             }
-        
+        }
 )});
     
 module.exports = router;
