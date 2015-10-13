@@ -60,7 +60,8 @@ router.post('/contactme', function(req, res) {
                 console.log(err);
             }
             else {
-                document.getElementById("emailSent").innerHTML = "Your message has been sent";
+                   // document.getElementById("emailSent").innerHTML = "Your message has been sent";
+                }
             }
         }
 )});
