@@ -1,41 +1,35 @@
 /*
-    File name: styles.css
-    Author: Alex Andriishyn
-    Website: http://alexandriishyn.azurewebsites.net/
-    File description: custom css styles
+File name: styles.css
+Author: Alex Andriishyn
+Website: http://alexandriishyn.azurewebsites.net/
+File description: custom css styles
 */
 
-body {
-    padding: 25px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Navigation */
+.navigation {
+  margin-bottom: 10px;
 }
 
 a {
-    color: #00B7FF;
+  color: #00B7FF;
 }
 
 /* Footer */
 .copyright {
-    float: right;
-}
-
-/* Common containers */
-.container {
-    text-align: center;
-}
-
-/* Navigation */
-.navigation {
-    margin-bottom: 10px;
-}
-
-/* Border for debugging CSS */
-.border_red {
-    border: 2px solid red
+  float: right;
 }
 
 /* Contact me page styles */
 textarea {
-    resize: none;
+  resize: none;
 }
 
+/* Common containers */
+body {
+  padding: 25px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+}
