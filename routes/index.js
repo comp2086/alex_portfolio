@@ -26,17 +26,17 @@ router.get('/', function(req, res, next) {
 
 // About page
 router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'About me' });
+  res.render('index', { title: 'About me' });
 });
 
 // Projects page
 router.get('/projects', function(req, res, next) {
-  res.render('projects', { title: 'Projects' });
+  res.render('index', { title: 'Projects' });
 });
 
 // Services page
 router.get('/services', function(req, res, next) {
-  res.render('services', { title: 'Services' });
+  res.render('index', { title: 'Services' });
 });
 
 // Contact me page
