@@ -15,6 +15,10 @@ a {
 }
 
 /* Footer */
+footer {
+  background-color: white;
+}
+
 .copyright {
   float: right;
 }
@@ -26,10 +30,20 @@ textarea {
 
 /* Common containers */
 body {
-  padding: 25px;
+  margin: 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .container {
   text-align: center;
+  margin-bottom: 15px;
+}
+
+.content {
+  text-align: center;
+}
+
+/* Overriden bootstrap classes */
+.panel-body {
+  text-align: left;
 }

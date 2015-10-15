@@ -21,22 +21,29 @@ var transport = nodemailer.createTransport("SMTP", {
 
 // Home page
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home' });
+  res.render('index', { title: 'Home',
+                        main_content: 'Hello and welcome to the portfolio of Alex Andriishyn, a Software Developer from Ukraine.',
+                        secondary_content: 'This is still a work in progress!',
+                        img_src: 'construction.png' });
 });
 
 // About page
 router.get('/about', function(req, res, next) {
-  res.render('index', { title: 'About me' });
+  res.render('index', { title: 'About me',
+                        main_content: '',
+                        secondary_content: '',
+                        img_src: 'construction.png'});
 });
 
 // Projects page
 router.get('/projects', function(req, res, next) {
-  res.render('index', { title: 'Projects' });
+  res.render('projects', { title: 'Projects',
+                        });
 });
 
 // Services page
 router.get('/services', function(req, res, next) {
-  res.render('index', { title: 'Services' });
+  res.render('services', { title: 'Services' });
 });
 
 // Contact me page
