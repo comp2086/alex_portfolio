@@ -73,4 +73,9 @@ router.post('/contactme', function(req, res) {
   }
 )});
 
+// Login page
+router.get('/signin', function(req, res, next) {
+  res.render('signin', { title: 'Sign In'});
+});
+
 module.exports = router;
