@@ -3,11 +3,18 @@ var mongoose = require('mongoose'),
 		Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
+	firstname: String,
+	lastname: String,
 	username: {
 		type: String,
 		unique: true,
 		required: "Username is required",
 		trim: true
+	},
+
+	email: {
+		type: String,
+		match: [/.+\@.+\..+/, "Please enter a valid email address"]
 	},
 
 	password: {
@@ -16,11 +23,6 @@ var UserSchema = new Schema({
 			function(password) { return password && password.length > 6; },
 							"Password should be 6 characters or longer"
 		]
-	},
-
-	email: {
-		type: String,
-		match: [/.+\@.+\..+/, "Please enter a valid email address"]
 	},
 
 	salt: String,
