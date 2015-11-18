@@ -1,22 +1,37 @@
-// register modules
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
+// Modules
+var express = require('express'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    session = require('express-session'),
+    passport = require('passport'),
+    mongoose = require('mongoose'),
+    flash = require('connect-flash');
 
+// DB
+var db = require('./config/db.js');
+mongoose.connect(DB.url);
+mongoose.connection.on('error', function() {
+  console.error('MongoDB Connection Error');
+});
 
+// Passport
+require('./config/passport')(passport);
+
+// Routing
 var routes = require('./routes/index');
-
+var users = require('./routes/users');
 var app = express();
+
+// passport configuration
+require('./config/passport')(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -25,6 +40,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public/images')));
 app.use('/', routes);
+app.use('/users', users)
+
+// Session
+app.use(session({
+  saveUninitialized: true,
+  resave: true,
+  secret: 'secret'
+}));
+
+// Passport and flash middleware
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
