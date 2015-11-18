@@ -6,7 +6,9 @@ File description: routes file
 */
 
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
+var user = require('../models/user');
 
 // Email library and server
 var nodemailer = require('nodemailer');
