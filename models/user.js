@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
-		bcrypt = require('bcrypt-nodejs');
-
-var	Schema = mongoose.Schema;
+		bcrypt = require('bcrypt-nodejs'),
+		Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
 	username: {
@@ -9,7 +8,7 @@ var UserSchema = new Schema({
 		unique: true,
 		required: "Username is required",
 		trim: true
-	}
+	},
 
 	password: {
 		type: String,
@@ -17,7 +16,7 @@ var UserSchema = new Schema({
 			function(password) { return password && password.length > 6; },
 							"Password should be 6 characters or longer"
 		]
-	}
+	},
 
 	email: {
 		type: String,
@@ -32,7 +31,9 @@ var UserSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
-	}
+	},
+
+	updated: Number
 });
 
 // Generate hash
@@ -45,4 +46,9 @@ UserSchema.methods.validPassword = function (password) {
 	return bcrypt.compareSync(password, this.password);
 }
 
-module.exports = mongoose.model('User', UserSchema);
+UserSchema.set('toJSON', {
+	getters: true,
+	virtuals: true
+});
+
+mongoose.model('User', UserSchema);

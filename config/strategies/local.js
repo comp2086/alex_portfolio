@@ -1,14 +1,12 @@
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
-    User = require('../../models/user')
+    User = require('mongoose').model('User');
 
-module.exports = function(passport) {
+module.exports = function() {
   passport.use(new LocalStrategy({
-    // Use req object for flash
     passReqToCallback: true
   },
   function(req, username, passsword, done) {
-
 
     process.nextTick(function() {
         User.findOne({

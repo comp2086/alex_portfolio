@@ -11,18 +11,16 @@ var express = require('express'),
     flash = require('connect-flash');
 
 // DB
-var db = require('./config/db.js');
+var DB = require('./config/db.js');
 mongoose.connect(DB.url);
 mongoose.connection.on('error', function() {
   console.error('MongoDB Connection Error');
 });
 
-// Passport
-require('./config/passport')(passport);
 
-// Routing
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
 var app = express();
 
 // passport configuration
@@ -39,8 +37,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public/images')));
-app.use('/', routes);
-app.use('/users', users)
 
 // Session
 app.use(session({
@@ -53,6 +49,9 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/', routes);
+//app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

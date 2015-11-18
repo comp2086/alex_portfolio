@@ -3,8 +3,22 @@ var passport = require('passport'),
 
 module.exports = function() {
 
-  // Session serialization and deserialization
+  var User = mongoose.model('User');
+
+  // User serialization and deserialization
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser(function (id, done) {
+    User.findById(id, function(err, user) {
+      done(err, user);
+    })
+  });
 
   // Require local strategy
-  require('./strategies/local.js');
+  require('./strategies/local.js')();
+  
+  // Require OAuth strategy
+
 }
