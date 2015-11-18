@@ -35,7 +35,9 @@ var UserSchema = new Schema({
 		default: Date.now
 	},
 
-	updated: Number
+	updated: {
+		type: Number,
+		default: Date.now
 });
 
 // Generate hash

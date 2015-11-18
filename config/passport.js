@@ -16,9 +16,7 @@ module.exports = function() {
     })
   });
 
-  // Require local strategy
-  require('./strategies/local.js')();
-  
-  // Require OAuth strategy
-
+  // Require strategies
+  require('./strategies/local_signin.js')();
+  require('./strategies/local_signup.js')();
 }

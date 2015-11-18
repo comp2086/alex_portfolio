@@ -80,4 +80,9 @@ router.get('/signin', function(req, res, next) {
   res.render('signin', { title: 'Sign In'});
 });
 
+// Sign up page
+router.get('/signup', function(req, res, next) {
+  res.render('signup', { title: 'Sign up'});
+});
+
 module.exports = router;
