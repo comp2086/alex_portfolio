@@ -1,4 +1,4 @@
-var User = require('mongoose').model('User'),
+var user = require('mongoose').model('User'),
 passport = require('passport'),
 express = require('express'),
 router = express.Router();
@@ -13,7 +13,7 @@ function requireAuth(req, res, next){
 
 // Users index page
 router.get('/', requireAuth, function(req, res, next) {
-  User.find(function(err, users) {
+  user.find(function(err, users) {
     if(err) {
       console.log(err);
       res.end(err);
@@ -25,13 +25,13 @@ router.get('/', requireAuth, function(req, res, next) {
         username: req.user ? req.user.username : ''
       });
     }
-  });
+  }).sort({ firstname : 1});
 });
 
 // Delete user page
 router.get('/delete/:id', requireAuth, function(req, res, next) {
   var id = req.params.id;
-  User.remove({ _id: id }, function(err) {
+  user.remove({ _id: id }, function(err) {
     if(err) {
       console.log(err);
       res.end(err);
@@ -50,10 +50,40 @@ router.get('/add', requireAuth, function(req, res, next) {
   })
 });
 
+/*
 router.post('/add', passport.authenticate('local-signup', {
   successRedirect: '/users',
-  failureRedirect: '/add',
+  failureRedirect: 'add',
   failureFlash: true
-}))
+}));
+*/
+router.post('/add', requireAuth, function(req, res, next){
+  var newUser = new user(req.body);
+  var hashedPassword = newUser.generateHash(newUser.password);
+  user.create({
+    firstname: newUser.firstname,
+    lastname: newUser.lastname,
+    username: newUser.username,
+    email: newUser.email,
+    password: hashedPassword,
+    provider: 'local'
+  }, function(err, user) {
+    if(err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      res.redirect('/users');
+    }
+  });
+});
+
+// Edit user page
+router.get('/:id', requireAuth, function(req, res, next) {
+  res.render('users/edit', {
+    title: 'Edit user',
+    activeUser: req.user,
+    username: req.user ? req.user.username : ''
+  })
+});
 
 module.exports = router;
