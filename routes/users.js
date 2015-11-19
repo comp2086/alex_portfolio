@@ -44,13 +44,16 @@ router.get('/delete/:id', requireAuth, function(req, res, next) {
 // Add user page
 router.get('/add', requireAuth, function(req, res, next) {
   res.render('users/add', {
-    title: 'Add user',
+    title: 'Add business contact',
     activeUser: req.user,
     username: req.user ? req.user.username : ''
   })
 });
 
 /*
+this behaves strange, it fires up successRedirect but doesn't add anything,
+however, 1/10 adds works for some reason..
+
 router.post('/add', passport.authenticate('local-signup', {
   successRedirect: '/users',
   failureRedirect: 'add',
