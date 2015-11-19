@@ -12,8 +12,8 @@ function requireAuth(req, res, next){
 }
 
 // Users index page
-router.get('/', requireAuth, function (req, res, next) {
-  User.find(function (err, users) {
+router.get('/', requireAuth, function(req, res, next) {
+  User.find(function(err, users) {
     if(err) {
       console.log(err);
       res.end(err);
@@ -29,9 +29,9 @@ router.get('/', requireAuth, function (req, res, next) {
 });
 
 // Delete user page
-router.get('/delete/:id', requireAuth, function (req, res, next) {
+router.get('/delete/:id', requireAuth, function(req, res, next) {
   var id = req.params.id;
-  User.remove({ _id: id }, function (err) {
+  User.remove({ _id: id }, function(err) {
     if(err) {
       console.log(err);
       res.end(err);
@@ -40,5 +40,20 @@ router.get('/delete/:id', requireAuth, function (req, res, next) {
     }
   });
 });
+
+// Add user page
+router.get('/add', requireAuth, function(req, res, next) {
+  res.render('users/add', {
+    title: 'Add user',
+    activeUser: req.user,
+    username: req.user ? req.user.username : ''
+  })
+});
+
+router.post('/add', passport.authenticate('local-signup', {
+  successRedirect: '/users',
+  failureRedirect: '/add',
+  failureFlash: true
+}))
 
 module.exports = router;

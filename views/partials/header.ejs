@@ -48,6 +48,7 @@ File description: header partial view
         <ul class="nav navbar-nav navbar-right">
           <% if(username) { %>
             <li class="active"><a href="/users">Business contact list</a></li>
+            <li><a href="/users/add">Add contact</a></li>
             <li><a href="#">Hello, <%= activeUser.firstname + ' ' + activeUser.lastname %></a></li>
             <li><a href="/logout">Logout</a></li>
           <% } else { %>
@@ -57,4 +58,6 @@ File description: header partial view
         </ul>
       </div>
     </nav>
-    <h3><%= title %></h3>
+    <div class="page-header">
+      <h2><%= title %></h3>
+    </div>
