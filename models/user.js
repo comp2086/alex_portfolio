@@ -38,17 +38,21 @@ var UserSchema = new Schema({
 	updated: {
 		type: Number,
 		default: Date.now
+	}
+},
+{
+	collection: 'userInfo'
 });
 
 // Generate hash
 UserSchema.methods.generateHash = function(password) {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-}
+};
 
 // Check password
 UserSchema.methods.validPassword = function (password) {
 	return bcrypt.compareSync(password, this.password);
-}
+};
 
 UserSchema.set('toJSON', {
 	getters: true,

@@ -2,8 +2,8 @@ var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     User = require('mongoose').model('User');
 
-module.exports = function( {
-  passport.use('local-registration', new LocalStrategy({
+module.exports = function() {
+  passport.use('local-signup', new LocalStrategy({
 		passReqToCallback: true
 	},
 	function(req, username, password, done) {
@@ -20,7 +20,7 @@ module.exports = function( {
 
 					// Username already exists
 					if(user) {
-						return done(null, false, req.flash('registrationMessage', 'The username is already take'));
+						return done(null, false, req.flash('registrationMessage', 'The username is already taken'));
 					}
 
           // Create a user object and save it in the DB
@@ -45,3 +45,4 @@ module.exports = function( {
 			}
 		});
 	}));
+};

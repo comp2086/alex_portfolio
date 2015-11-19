@@ -3,10 +3,10 @@ var passport = require('passport'),
     User = require('mongoose').model('User');
 
 module.exports = function() {
-  passport.use(new LocalStrategy({
+  passport.use('local-signin', new LocalStrategy({
     passReqToCallback: true
   },
-  function(req, username, passsword, done) {
+  function(req, username, password, done) {
 
     process.nextTick(function() {
         User.findOne({

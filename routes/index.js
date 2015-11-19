@@ -75,14 +75,35 @@ router.post('/contactme', function(req, res) {
   }
 )});
 
-// Login page
+// Sign in page
 router.get('/signin', function(req, res, next) {
-  res.render('signin', { title: 'Sign In'});
+  if (!req.user) {
+      res.render('signin', {
+          title: 'Sign in',
+          messages: req.flash('loginMessage'),
+          displayName: req.user ? req.user.username : ''
+      });
+  }
+  else {
+      return res.redirect('/users');
+  }
 });
+
+router.post('/signin', passport.authenticate('local-signin', {
+    successRedirect: 'signup',
+    failureRedirect: 'signin',
+    failureFlash: true
+}));
 
 // Sign up page
 router.get('/signup', function(req, res, next) {
   res.render('signup', { title: 'Sign up'});
 });
+
+router.post('/signup', passport.authenticate('local-signup', {
+  successRedirect: 'signup',
+  failureRedirect: 'signup',
+  failureFlash: true
+}))
 
 module.exports = router;
