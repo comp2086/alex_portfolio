@@ -19,4 +19,5 @@ module.exports = function() {
   // Require strategies
   require('./strategies/local_signin.js')();
   require('./strategies/local_signup.js')();
+  //require('./strategies/facebook_oauth.js')();
 }
