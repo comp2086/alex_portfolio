@@ -24,33 +24,45 @@ var transport = nodemailer.createTransport("SMTP", {
 // Home page
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home',
-                        main_content: 'Hello and welcome to the portfolio of Alex Andriishyn, a Software Developer from Ukraine.',
-                        secondary_content: 'This is still a work in progress!',
-                        img_src: 'construction.png' });
+  username: req.user ? req.user.username : '',
+  activeUser: req.user,
+  main_content: 'Hello and welcome to the portfolio of Alex Andriishyn, a Software Developer from Ukraine.',
+  secondary_content: 'This is still a work in progress!',
+  img_src: 'construction.png' });
 });
 
 // About page
 router.get('/about', function(req, res, next) {
   res.render('index', { title: 'About me',
-                        main_content: '',
-                        secondary_content: '',
-                        img_src: 'construction.png'});
+  username: req.user ? req.user.username : '',
+  activeUser: req.user,
+  main_content: '',
+  secondary_content: '',
+  img_src: 'construction.png'
+});
 });
 
 // Projects page
 router.get('/projects', function(req, res, next) {
   res.render('projects', { title: 'Projects',
-                        });
+  username: req.user ? req.user.username : '',
+  activeUser: req.user
+});
 });
 
 // Services page
 router.get('/services', function(req, res, next) {
-  res.render('services', { title: 'Services' });
+  res.render('services', { title: 'Services',
+  username: req.user ? req.user.username : '',
+  activeUser: req.user
+});
 });
 
 // Contact me page
 router.get('/contactme', function(req, res, next) {
   res.render('contactme', { title: 'Contact me',
+  username: req.user ? req.user.username : '',
+  activeUser: req.user,
   emailSent: ''});
 });
 
@@ -77,33 +89,44 @@ router.post('/contactme', function(req, res) {
 
 // Sign in page
 router.get('/signin', function(req, res, next) {
-  if (!req.user) {
-      res.render('signin', {
-          title: 'Sign in',
-          messages: req.flash('loginMessage'),
-          displayName: req.user ? req.user.username : ''
-      });
+  if(!req.user) {
+    res.render('signin', {
+      title: 'Sign in',
+      messages: req.flash('loginMessage'),
+      username: req.user ? req.user.username : '',
+      activeUser: req.user
+    });
   }
   else {
-      return res.redirect('/users');
+    return res.redirect('/users');
   }
 });
 
 router.post('/signin', passport.authenticate('local-signin', {
-    successRedirect: 'signup',
-    failureRedirect: 'signin',
-    failureFlash: true
+  successRedirect: '/users',
+  failureRedirect: 'signup',
+  failureFlash: true
 }));
 
 // Sign up page
 router.get('/signup', function(req, res, next) {
-  res.render('signup', { title: 'Sign up'});
+  res.render('signup', {
+    title: 'Sign up',
+    username: req.user ? req.user.username : '',
+    activeUser: req.user
+  });
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: 'signup',
+  successRedirect: '/users',
   failureRedirect: 'signup',
   failureFlash: true
 }))
+
+// Logout
+router.get('/logout', function (req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 module.exports = router;
