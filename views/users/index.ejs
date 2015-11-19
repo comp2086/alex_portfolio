@@ -1,52 +1,63 @@
 <!--
-File name: index.ejs
+File name: users/index.ejs
 Author: Alex Andriishyn
 Website: http://alexandriishyn.azurewebsites.net/
-File description: users home page
+File description: users home and edit page
 -->
 <%- include ../partials/header.ejs %>
 <div class="panel panel-default">
   <% if (usersCollection.length > 0) { %>
     <div class="panel-body table-responsive">
-      <table class="table table-bordered table-striped table-hover">
-        <thead>
-          <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>User name</th>
-            <th>Email</th>
-            <th>Date Created</th>
-            <th>Date Updated</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for(var i = 0; i < usersCollection.length; i++) { %>
+      <form method="post">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
             <tr>
-              <td><%= usersCollection[i].firstname %></td>
-              <td><%= usersCollection[i].lastname %></td>
-              <td><%= usersCollection[i].username %></td>
-              <td><%= usersCollection[i].email %></td>
-              <td>
-                <% var date = new Date(usersCollection[i].created); %>
-                <%= date.toDateString() + " " + date.toLocaleTimeString(); %>
-              </td>
-              <td>
-                <% var date = new Date(usersCollection[i].updated);  %>
-                <%= date.toDateString() + " " + date.toLocaleTimeString(); %>
-              </td>
-              <td>
-                <a href="/users/<%= usersCollection[i]._id %>" title="Edit" class="btn btn-primary">
-                  <span class="glyphicon glyphicon-edit"></span>
-                </a>
-                <a href="/users/delete/<%= usersCollection[i]._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this user?');" class="btn btn-danger">
-                  <span class="glyphicon glyphicon-trash"></span>
-                </a>
-              </td>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>User name</th>
+              <th>Email</th>
+              <th></th>
             </tr>
-            <% } %>
-          </tbody>
-        </table>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i < usersCollection.length; i++) {
+              if(editUserID != false && usersCollection[i].id === editUserID) { %>
+              <tr>
+                <td><input type="text" name="firstname" value="<%= usersCollection[i].firstname %>" /></td>
+                <td><input type="text" name="lastname" value="<%= usersCollection[i].lastname %>" /></td>
+                <td><input type="text" name="username" value="<%= usersCollection[i].username %>" /></td>
+                <td><input type="email" name="email" value="<%= usersCollection[i].email %>" /></td>
+                <td>
+                  <a href="/users/cancel" title="Discard changes" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-ban-circle"> </span>
+                  </a>
+                  <button type="submit" class="btn btn-success" title="Apply changes">
+                    <span class="glyphicon glyphicon-floppy-disk"> </span>
+                  </button>
+                  <a href="/users/delete/<%= usersCollection[i]._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this user?');" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </a>
+                </td>
+              </tr>
+              <% } else { %>
+              <tr>
+                <td><%= usersCollection[i].firstname %></td>
+                <td><%= usersCollection[i].lastname %></td>
+                <td><%= usersCollection[i].username %></td>
+                <td><%= usersCollection[i].email %></td>
+                <td>
+                  <a href="/users/<%= usersCollection[i]._id %>" title="Edit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-edit"> </span>
+                  </a>
+                  <a href="/users/delete/<%= usersCollection[i]._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this user?');" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </a>
+                </td>
+              </tr>
+              <% }} %>
+            </tbody>
+          </table>
+        </form>
       </div>
       <% } %>
     </div>

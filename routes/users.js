@@ -1,4 +1,11 @@
-var user = require('mongoose').model('User'),
+/*
+File name: users.js
+Author: Alex Andriishyn
+Website: http://alexandriishyn.azurewebsites.net/
+File description: router for /users
+*/
+
+var User = require('mongoose').model('User'),
 passport = require('passport'),
 express = require('express'),
 router = express.Router();
@@ -11,9 +18,10 @@ function requireAuth(req, res, next){
   next();
 }
 
-// Users index page
+// Users home page
 router.get('/', requireAuth, function(req, res, next) {
-  user.find(function(err, users) {
+  // Get all users
+  User.find(function(err, users) {
     if(err) {
       console.log(err);
       res.end(err);
@@ -21,6 +29,7 @@ router.get('/', requireAuth, function(req, res, next) {
       res.render('users/index', {
         title: 'Business contact list',
         activeUser: req.user,
+        editUserID: false,
         usersCollection: users,
         username: req.user ? req.user.username : ''
       });
@@ -31,7 +40,7 @@ router.get('/', requireAuth, function(req, res, next) {
 // Delete user page
 router.get('/delete/:id', requireAuth, function(req, res, next) {
   var id = req.params.id;
-  user.remove({ _id: id }, function(err) {
+  User.remove({ _id: id }, function(err) {
     if(err) {
       console.log(err);
       res.end(err);
@@ -50,20 +59,10 @@ router.get('/add', requireAuth, function(req, res, next) {
   })
 });
 
-/*
-this behaves strange, it fires up successRedirect but doesn't add anything,
-however, 1/10 adds works for some reason..
-
-router.post('/add', passport.authenticate('local-signup', {
-  successRedirect: '/users',
-  failureRedirect: 'add',
-  failureFlash: true
-}));
-*/
 router.post('/add', requireAuth, function(req, res, next){
-  var newUser = new user(req.body);
+  var newUser = new User(req.body);
   var hashedPassword = newUser.generateHash(newUser.password);
-  user.create({
+  User.create({
     firstname: newUser.firstname,
     lastname: newUser.lastname,
     username: newUser.username,
@@ -82,11 +81,47 @@ router.post('/add', requireAuth, function(req, res, next){
 
 // Edit user page
 router.get('/:id', requireAuth, function(req, res, next) {
-  res.render('users/edit', {
-    title: 'Edit user',
-    activeUser: req.user,
-    username: req.user ? req.user.username : ''
-  })
+  // Get the id
+  var id = req.params.id;
+
+  // Get all Users
+  User.find(function(err, users) {
+    if(err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      res.render('users/index', {
+          title: 'Edit business contact list',
+          activeUser: req.user,
+          editUserID: id,
+          usersCollection: users,
+          username: req.user ? req.user.username : ''
+      })
+    } // End else
+  });
+});
+
+// Edit user page, if user applied changes
+router.post('/:id', requireAuth, function(req, res, next) {
+  var id = req.params.id;
+  var user = new User(req.body);
+  user._id = id;
+  user.updated = Date.now;
+
+  // Update DB
+  User.update({ _id: id }, user, function(err) {
+    if(err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      res.redirect('/users');
+    }
+  });
+});
+
+// Edit user page, if user discarded changes
+router.get('/cancel', requireAuth, function(req, res, next) {
+  res.redirect('/users');
 });
 
 module.exports = router;
