@@ -34,6 +34,7 @@ router.get('/', requireAuth, function(req, res, next) {
         username: req.user ? req.user.username : ''
       });
     }
+  // Sort by firstname in ascending order ('-1' - desc)
   }).sort({ firstname : 1});
 });
 

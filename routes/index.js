@@ -104,7 +104,7 @@ router.get('/signin', function(req, res, next) {
 
 router.post('/signin', passport.authenticate('local-signin', {
   successRedirect: '/users',
-  failureRedirect: 'signup',
+  failureRedirect: 'signin',
   failureFlash: true
 }));
 
