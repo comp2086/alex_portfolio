@@ -1,3 +1,11 @@
+/*
+File name: db.js
+Author: Alex Andriishyn
+Website: http://alexandriishyn.azurewebsites.net/
+File description: config file
+
+NOTE: need to rename to config.js and correct all references
+*/
 
 module.exports = {
   // Staging connection

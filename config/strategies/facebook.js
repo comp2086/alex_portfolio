@@ -5,7 +5,7 @@ Website: http://alexandriishyn.azurewebsites.net/
 File description: facebook OAuth strategy
 */
 
-//Note: this is not done yet, hence, it is not working properly. You can actually Login
+//NOTE: this is not done yet, hence, it is not working properly. You can actually Login
 //with facebook and it saves a new user if validation parameters are commented out in the user.js model.
 //but the redirection(index.js) is broken for some reason
 //and User is not being inserted correctly into the DB(all fields are blank)

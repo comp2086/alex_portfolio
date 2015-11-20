@@ -7,7 +7,7 @@ File description: external javascript file
 
 $(document).ready(
 
-    /* Display current date in footer*/
+    /* Display current date in the footer*/
     function() {
         var now = new Date();
         $("#cpright").append(now.getFullYear());
