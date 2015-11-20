@@ -1,3 +1,10 @@
+/*
+File name: user.js
+Author: Alex Andriishyn
+Website: http://alexandriishyn.azurewebsites.net/
+File description: users collection schema
+*/
+
 var mongoose = require('mongoose'),
 		bcrypt = require('bcrypt-nodejs'),
 		Schema = mongoose.Schema;
@@ -8,7 +15,7 @@ var UserSchema = new Schema({
 	username: {
 		type: String,
 		unique: true,
-		required: "Username is required",
+		//required: "Username is required",
 		trim: true
 	},
 
@@ -19,10 +26,10 @@ var UserSchema = new Schema({
 
 	password: {
 		type: String,
-		validate: [
-			function(password) { return password && password.length > 6; },
-							"Password should be 6 characters or longer"
-		]
+		//validate: [
+			//function(password) { return password && password.length > 6; },
+		//					"Password should be 6 characters or longer"
+	//	]
 	},
 
 	salt: String,
@@ -50,7 +57,7 @@ UserSchema.methods.generateHash = function(password) {
 };
 
 // Check password
-UserSchema.methods.validPassword = function (password) {
+UserSchema.methods.validPassword = function(password) {
 	return bcrypt.compareSync(password, this.password);
 };
 

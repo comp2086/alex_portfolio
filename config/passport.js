@@ -1,3 +1,10 @@
+/*
+File name: passport.js
+Author: Alex Andriishyn
+Website: http://alexandriishyn.azurewebsites.net/
+File description: passport config file
+*/
+
 var passport = require('passport'),
     mongoose = require('mongoose');
 
@@ -19,5 +26,5 @@ module.exports = function() {
   // Require strategies
   require('./strategies/local_signin.js')();
   require('./strategies/local_signup.js')();
-  //require('./strategies/facebook_oauth.js')();
+  require('./strategies/facebook.js')();
 }

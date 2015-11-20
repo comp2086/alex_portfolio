@@ -1,3 +1,10 @@
+/*
+File name: local_signup.js
+Author: Alex Andriishyn
+Website: http://alexandriishyn.azurewebsites.net/
+File description: local sign in strategy
+*/
+
 var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     User = require('mongoose').model('User');

@@ -129,7 +129,19 @@ router.post('/signup', passport.authenticate('local-signup', {
   successRedirect: '/users',
   failureRedirect: '/signup',
   failureFlash: true
-}))
+}));
+
+// Facebook OAuth login
+// 1st step - login into facebook
+router.get('/oauth/facebook', passport.authenticate('facebook', {
+  failureRedirect: '/signin'
+}));
+
+// 2nd step - login into our web app
+router.get('/oauth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/users',
+  failureRedirect: '/signin'
+}));
 
 // Logout
 router.get('/logout', function (req, res){
