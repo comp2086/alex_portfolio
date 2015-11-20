@@ -5,9 +5,7 @@ Website: http://alexandriishyn.azurewebsites.net/
 File description: users home and edit page
 -->
 <%- include ../partials/header.ejs %>
-<div class="panel panel-default">
   <% if (usersCollection.length > 0) { %>
-    <div class="panel-body table-responsive">
       <form method="post">
         <table class="table table-bordered table-striped table-hover">
           <thead>
@@ -62,7 +60,5 @@ File description: users home and edit page
             </tbody>
           </table>
         </form>
-      </div>
       <% } %>
-    </div>
 <%- include ../partials/footer.ejs %>
