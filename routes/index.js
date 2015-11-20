@@ -110,16 +110,24 @@ router.post('/signin', passport.authenticate('local-signin', {
 
 // Sign up page
 router.get('/signup', function(req, res, next) {
-  res.render('signup', {
-    title: 'Sign up',
-    username: req.user ? req.user.username : '',
-    activeUser: req.user
-  });
+
+  //Signup link is disabled when a user logs in, but i decided to keep it here,
+  //in case someone types it into the url
+  if(!req.user) {
+    res.render('signup', {
+      title: 'Sign up',
+      messages: req.flash('registerMessage'),
+      username: req.user ? req.user.username : '',
+      activeUser: req.user
+    });
+  } else {
+    return res.redirect('/')
+  }
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
   successRedirect: '/users',
-  failureRedirect: 'signup',
+  failureRedirect: '/signup',
   failureFlash: true
 }))
 

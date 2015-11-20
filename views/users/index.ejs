@@ -12,6 +12,7 @@ File description: users home and edit page
         <table class="table table-bordered table-striped table-hover">
           <thead>
             <tr>
+              <th></th>
               <th>First name</th>
               <th>Last name</th>
               <th>User name</th>
@@ -23,6 +24,7 @@ File description: users home and edit page
             <% for(var i = 0; i < usersCollection.length; i++) {
               if(editUserID != false && usersCollection[i].id === editUserID) { %>
               <tr>
+                <td><%= i + 1 %></td>
                 <td><input type="text" name="firstname" value="<%= usersCollection[i].firstname %>" /></td>
                 <td><input type="text" name="lastname" value="<%= usersCollection[i].lastname %>" /></td>
                 <td><input type="text" name="username" value="<%= usersCollection[i].username %>" /></td>
@@ -41,6 +43,7 @@ File description: users home and edit page
               </tr>
               <% } else { %>
               <tr>
+                <td><%= i + 1 %></td>
                 <td><%= usersCollection[i].firstname %></td>
                 <td><%= usersCollection[i].lastname %></td>
                 <td><%= usersCollection[i].username %></td>

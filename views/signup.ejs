@@ -1,4 +1,12 @@
 <%- include partials/header.ejs %>
+<% if(messages.length > 0) { %>
+<div class="row">
+<div class="col-sm-offset-4 col-sm-4 alert alert-danger">
+  <span class="glyphicon glyphicon-alert"></span>
+  <%= messages %>
+</div>
+</div>
+<% } %>
 <form class="form-horizontal" role="form" id="loginform" method="post">
   <div class="form-group">
     <label class="control-label col-sm-4" for="firstname">First name: </label>
