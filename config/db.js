@@ -10,8 +10,9 @@ NOTE: need to rename to config.js and correct all references
 module.exports = {
   // Staging connection
   //'url' : 'mongodb://localhost/userDB',
+
   // Live connection
-  'url' : 'mongodb://auth_assignment:12345@ds031651.mongolab.com:31651/userdb'
+  'url' : 'mongodb://auth_assignment:12345@ds031651.mongolab.com:31651/userdb',
 
   // Facebook app session
   'facebook' : {
