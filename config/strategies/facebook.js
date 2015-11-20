@@ -9,6 +9,7 @@ File description: facebook OAuth strategy
 //with facebook and it saves a new user if validation parameters are commented out in the user.js model.
 //but the redirection(index.js) is broken for some reason
 //and User is not being inserted correctly into the DB(all fields are blank)
+//(i think, empty user fields in the DB are the reason of malfunctioning)
 var passport = require('passport'),
     url = require('url'),
     FacebookStrategy = require('passport-facebook').Strategy,
