@@ -19,12 +19,12 @@ module.exports = function() {
 
           // No user found
           if(!user) {
-            return done(null, false, req.flash('loginMessage', 'Incorrect username'));
+            return done(null, false, req.flash('signinMessage', 'Incorrect username'));
           }
 
           // Incorrect password
           if(!user.validPassword(password)) {
-            return done(null, false, req.flash('loginMessage', 'Incorrect password'));
+            return done(null, false, req.flash('signinMessage', 'Incorrect password'));
           }
 
           // Log in

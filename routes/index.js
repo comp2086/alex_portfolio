@@ -92,7 +92,7 @@ router.get('/signin', function(req, res, next) {
   if(!req.user) {
     res.render('signin', {
       title: 'Sign in',
-      messages: req.flash('loginMessage'),
+      messages: req.flash('signinMessage'),
       username: req.user ? req.user.username : '',
       activeUser: req.user
     });
@@ -116,7 +116,7 @@ router.get('/signup', function(req, res, next) {
   if(!req.user) {
     res.render('signup', {
       title: 'Sign up',
-      messages: req.flash('registerMessage'),
+      messages: req.flash('signupMessage'),
       username: req.user ? req.user.username : '',
       activeUser: req.user
     });

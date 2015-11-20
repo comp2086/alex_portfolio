@@ -10,7 +10,6 @@ module.exports = function() {
 	function(req, username, password, done) {
 
 		process.nextTick(function() {
-
 			// Check if not already logged in
 			if(!req.user) {
 				User.findOne({'username': username},
@@ -21,7 +20,7 @@ module.exports = function() {
 
 					// Username already exists
 					if(user) {
-						return done(null, false, req.flash('registrationMessage', 'The username is already taken'));
+						return done(null, false, req.flash('signupMessage', 'This username is already taken'));
 					}
 
           // Create a user object and save it in the DB
