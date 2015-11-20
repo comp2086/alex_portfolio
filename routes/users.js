@@ -29,7 +29,7 @@ router.get('/', requireAuth, function(req, res, next) {
       res.render('users/index', {
         title: 'Business contact list',
         activeUser: req.user,
-        editUserID: false,
+        editUserID: -1,
         usersCollection: users,
         username: req.user ? req.user.username : ''
       });
@@ -99,7 +99,7 @@ router.get('/:id', requireAuth, function(req, res, next) {
           username: req.user ? req.user.username : ''
       })
     } // End else
-  });
+  }).sort({ firstname : 1});
 });
 
 // Edit user page, if user applied changes

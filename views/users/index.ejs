@@ -20,14 +20,14 @@ File description: users home and edit page
           </thead>
           <tbody>
             <% for(var i = 0; i < usersCollection.length; i++) {
-              if(editUserID != false && usersCollection[i].id === editUserID) { %>
-              <tr>
+              if(editUserID != -1 && usersCollection[i].id === editUserID) { %>
+              <tr style="text-align: left;">
                 <td><%= i + 1 %></td>
                 <td><input type="text" name="firstname" value="<%= usersCollection[i].firstname %>" /></td>
                 <td><input type="text" name="lastname" value="<%= usersCollection[i].lastname %>" /></td>
                 <td><input type="text" name="username" value="<%= usersCollection[i].username %>" /></td>
                 <td><input type="email" name="email" value="<%= usersCollection[i].email %>" /></td>
-                <td>
+                <td style="text-align: center;">
                   <a href="/users/cancel" title="Discard changes" class="btn btn-warning">
                     <span class="glyphicon glyphicon-ban-circle"> </span>
                   </a>
@@ -40,13 +40,13 @@ File description: users home and edit page
                 </td>
               </tr>
               <% } else { %>
-              <tr>
+              <tr style="text-align: left;">
                 <td><%= i + 1 %></td>
                 <td><%= usersCollection[i].firstname %></td>
                 <td><%= usersCollection[i].lastname %></td>
                 <td><%= usersCollection[i].username %></td>
                 <td><%= usersCollection[i].email %></td>
-                <td>
+                <td style="text-align: center;">
                   <a href="/users/<%= usersCollection[i]._id %>" title="Edit" class="btn btn-primary">
                     <span class="glyphicon glyphicon-edit"> </span>
                   </a>
@@ -60,5 +60,5 @@ File description: users home and edit page
             </tbody>
           </table>
         </form>
-      <% } %>
+      <% } %> <!-- end if -->
 <%- include ../partials/footer.ejs %>
