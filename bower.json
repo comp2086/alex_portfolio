@@ -1,0 +1,22 @@
+{
+  "name": "alex_portfolio",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Alex Andriishyn <alex.andriishyn@icloud.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/comp2086/alex_portfolio",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8"
+  }
+}
