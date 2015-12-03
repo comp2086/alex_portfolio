@@ -14,7 +14,7 @@ function requireAuth(req, res, next) {
 }
 
 /* CREATE TODOS */
-router.post('/', requireAuth, function(req, res, next){
+router.post('/', requireAuth, function(req, res, next) {
   Todo.create(req.body, function(err, post){
     if(err) {
       return next(err);

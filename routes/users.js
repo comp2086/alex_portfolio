@@ -18,6 +18,21 @@ function requireAuth(req, res, next){
   next();
 }
 
+// Edit user page, if user discarded changes
+router.get('/cancel', requireAuth, function(req, res, next) {
+  res.redirect('/users');
+});
+
+// Todo list page
+router.get('/todolist', requireAuth, function(req, res, next) {
+  res.render('todo/index', {
+    title: 'Todos',
+    displayName: req.user ? req.user.displayName : '',
+    username: req.user ? req.user.username : '',
+    activeUser: req.user ? req.user.username : ''
+  });
+});
+
 // Users home page
 router.get('/', requireAuth, function(req, res, next) {
   // Get all users
@@ -117,19 +132,6 @@ router.post('/:id', requireAuth, function(req, res, next) {
     } else {
       res.redirect('/users');
     }
-  });
-});
-
-// Edit user page, if user discarded changes
-router.get('/cancel', requireAuth, function(req, res, next) {
-  res.redirect('/users');
-});
-
-// Todo list page
-router.get('/todolist', requireAuth, function(req, res, next) {
-  res.render('todo/index', {
-    title: 'Todos',
-    displayName: req.user ? req.user.displayName : ''
   });
 });
 

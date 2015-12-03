@@ -76,3 +76,6 @@ $RECYCLE.BIN/
 
 # Bower components
 public/lib
+
+#WebStorm IDE components
+.idea/
