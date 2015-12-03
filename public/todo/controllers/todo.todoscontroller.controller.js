@@ -1,4 +1,9 @@
-
+/*
+File name: todos.controller.js
+Author: Alex Andriishyn
+Website: http://alexandriishyn.azurewebsites.net/
+File description: todos controller
+*/
 angular.module('todos').controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
   $scope.editing = [];
   $scope.username = '';

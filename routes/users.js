@@ -125,4 +125,12 @@ router.get('/cancel', requireAuth, function(req, res, next) {
   res.redirect('/users');
 });
 
+// Todo list page
+router.get('/todolist', requireAuth, function(req, res, next) {
+  res.render('todo/index', {
+    title: 'Todos',
+    displayName: req.user ? req.user.displayName : ''
+  });
+});
+
 module.exports = router;

@@ -1,4 +1,10 @@
-amgular.module('todos').controller('TodoDetailCtrl', ['$scope', '$routeParams', 'Todos', '$location',
+/*
+File name: todosDetailed.controller.js
+Author: Alex Andriishyn
+Website: http://alexandriishyn.azurewebsites.net/
+File description: Detailed todos controller
+*/
+angular.module('todos').controller('TodoDetailCtrl', ['$scope', '$routeParams', 'Todos', '$location',
 function ($scope, $routeParams, Todos, $location) {
   $scope.todo = Todos.get({ id: $routeParams.id });
   $scope.update = function () {

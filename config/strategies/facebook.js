@@ -30,10 +30,10 @@ module.exports = function() {
     providerData.refreshToken = refreshToken;
 
     var newUser = new User();
-    newUser.firstname = profile.name.givenName;
-    newUser.lastname = profile.name.familyName;
-    newUser.email = profile.email;
-    newUser.username = profile.username;
+    newUser.firstname = profile.name.givenName.value;
+    newUser.lastname = profile.name.familyName.value;
+    newUser.email = profile.email.value;
+    newUser.username = profile.username.value;
     newUser.provider = 'facebook';
     newUser.providerId = profile.id;
     newUser.providerData = providerData;

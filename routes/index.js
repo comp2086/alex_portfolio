@@ -121,7 +121,7 @@ router.get('/signup', function(req, res, next) {
       activeUser: req.user
     });
   } else {
-    return res.redirect('/')
+    return res.redirect('/');
   }
 });
 

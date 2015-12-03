@@ -47,10 +47,11 @@ File description: header partial view
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if(username) { %>
+            <li><a href="/users/todolist">Todo List</a></li>
             <li class="active"><a href="/users">Business contact list</a></li>
             <li><a href="/users/add">Add contact</a></li>
             <li><a href="#">Hello, <%= activeUser.firstname + ' ' + activeUser.lastname %></a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
           <% } else { %>
               <!-- <li><a href="/oauth/facebook"><span class="glyphicon glyphicon-user"></span> Sign In with Facebook</a></li> -->
               <li><a href="/signin"><span class="glyphicon glyphicon-user"></span> Sign In</a></li>
