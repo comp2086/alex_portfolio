@@ -47,3 +47,14 @@ body {
 .panel-body {
   text-align: left;
 }
+
+/* ToDos */
+
+.borderless td, .borderless th {
+    border: none;
+}
+
+.completed-true {
+  text-decoration: line-through;
+  color: grey;
+}

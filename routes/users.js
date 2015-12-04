@@ -29,7 +29,7 @@ router.get('/todolist', requireAuth, function(req, res, next) {
     title: 'Todos',
     displayName: req.user ? req.user.displayName : '',
     username: req.user ? req.user.username : '',
-    activeUser: req.user ? req.user.username : ''
+    activeUser: req.user
   });
 });
 
