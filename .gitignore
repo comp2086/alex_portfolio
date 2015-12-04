@@ -73,6 +73,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# Bower components
-public/lib
